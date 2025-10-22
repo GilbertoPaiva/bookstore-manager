@@ -2,6 +2,7 @@ package com.i9systemas.bookstore.repository;
 
 import com.i9systemas.bookstore.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b WHERE b.id = :id")
     Optional<Book> findBookById(@Param("id") Long id);
 
+    @Modifying
     @Query("DELETE FROM Book b WHERE b.id = :id")
     void deleteBookById(@Param("id") Long id);
 }
